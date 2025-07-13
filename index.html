@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StudioCyber - Roblox Game Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      font-family: 'Orbitron', sans-serif;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background-color: #0f0f0f;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    header h1 {
+      color: #00b4ff;
+      font-size: 2rem;
+    }
+
+    nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00b4ff;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0f0f 50%, #121212 100%);
+      padding: 2rem;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      color: #00b4ff;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      color: #d1d1d1;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #00b4ff;
+    }
+
+    .section p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #1e1e1e;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>StudioCyber</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#games">Games</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Creating the Future of Roblox on Xbox</h2>
+    <p>We are StudioCyber—a powerful team of developers, dreamers, and designers building immersive Roblox games with console-first focus and community at heart.</p>
+  </section>
+
+  <section class="section" id="about">
+    <h3>About StudioCyber</h3>
+    <p>
+      Born from a passion for high-quality gameplay and storytelling, StudioCyber is a collective of talented Roblox creators aiming to dominate Xbox experiences. We believe in tight-knit collaboration and pushing the platform's limits.
+    </p>
+  </section>
+
+  <section class="section" id="games">
+    <h3>Games in Development</h3>
+    <p>
+      From intense PvP arenas to rich open-world universes, our games are crafted with love and built for community. Stay tuned for our first title dropping this year.
+    </p>
+  </section>
+
+  <section class="section" id="contact">
+    <h3>Join the Community</h3>
+    <p>
+      Want to collaborate, playtest, or just follow our journey? Contact us at <strong>studio.cyber.roblox@gmail.com</strong> and follow us on Roblox, YouTube, and Discord.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 StudioCyber. All rights reserved.
+  </footer>
+
+</body>
+</html>
