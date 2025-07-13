@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StudioCyber - Roblox Game Studio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -12,138 +12,854 @@
       box-sizing: border-box;
     }
 
-    body {
-      background-color: #121212;
-      font-family: 'Orbitron', sans-serif;
-      color: #f5f5f5;
-      overflow-x: hidden;
+    :root {
+      --primary-blue: #00b4ff;
+      --secondary-blue: #0099cc;
+      --accent-cyan: #00f5ff;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --text-light: #f8fafc;
+      --text-gray: #cbd5e1;
     }
 
+    body {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 30%, #16213e 70%, #0f3460 100%);
+      font-family: 'Exo 2', sans-serif;
+      color: var(--text-light);
+      overflow-x: hidden;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    /* Enhanced animated background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .particle-1 {
+      width: 3px;
+      height: 3px;
+      background: var(--primary-blue);
+      animation: float1 20s infinite linear;
+      box-shadow: 0 0 6px var(--primary-blue);
+    }
+
+    .particle-2 {
+      width: 2px;
+      height: 2px;
+      background: var(--accent-cyan);
+      animation: float2 15s infinite linear;
+      box-shadow: 0 0 4px var(--accent-cyan);
+    }
+
+    .particle-3 {
+      width: 1px;
+      height: 1px;
+      background: var(--purple);
+      animation: float3 25s infinite linear;
+      box-shadow: 0 0 3px var(--purple);
+    }
+
+    @keyframes float1 {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float2 {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% {
+        transform: translateY(-100vh) rotate(-360deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float3 {
+      0% {
+        transform: translateY(100vh) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% {
+        transform: translateY(-100vh) rotate(180deg) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Enhanced header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem;
-      background-color: #0f0f0f;
-      border-bottom: 1px solid #1e1e1e;
+      padding: 1.5rem 3rem;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 180, 255, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover {
+      transform: scale(1.05);
+    }
+
+    .logo {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 25px rgba(0, 180, 255, 0.6);
+      animation: logoGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes logoGlow {
+      0% { box-shadow: 0 0 25px rgba(0, 180, 255, 0.6); }
+      100% { box-shadow: 0 0 35px rgba(0, 180, 255, 0.8), 0 0 50px rgba(0, 245, 255, 0.3); }
     }
 
     header h1 {
-      color: #00b4ff;
-      font-size: 2rem;
+      font-family: 'Orbitron', monospace;
+      color: var(--primary-blue);
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(0, 180, 255, 0.7);
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
     }
 
     nav a {
-      color: #f5f5f5;
+      color: var(--text-light);
       text-decoration: none;
-      margin-left: 2rem;
       font-size: 1rem;
-      transition: color 0.3s;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+      border-radius: 25px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    nav a:hover::before {
+      opacity: 1;
     }
 
     nav a:hover {
-      color: #00b4ff;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 180, 255, 0.3);
     }
 
+    /* Enhanced hero section */
     .hero {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 90vh;
+      min-height: 100vh;
       text-align: center;
-      background: linear-gradient(135deg, #0f0f0f 50%, #121212 100%);
-      padding: 2rem;
+      padding: 8rem 2rem 2rem;
+      position: relative;
+      z-index: 2;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 180, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero h2 {
-      font-size: 3rem;
-      color: #00b4ff;
-      margin-bottom: 1rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 4rem;
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.5)); }
+      100% { filter: drop-shadow(0 0 30px rgba(0, 180, 255, 0.8)); }
     }
 
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      color: #d1d1d1;
+      font-size: 1.4rem;
+      color: var(--text-gray);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
     }
 
+    .cta-button {
+      display: inline-block;
+      padding: 1.2rem 2.5rem;
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 180, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 180, 255, 0.6);
+    }
+
+    /* Enhanced sections */
     .section {
-      padding: 4rem 2rem;
+      padding: 6rem 2rem;
       text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .section h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #00b4ff;
+      font-family: 'Orbitron', monospace;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
     }
 
     .section p {
-      max-width: 700px;
-      margin: 0 auto;
-      color: #ccc;
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-weight: 300;
     }
 
+    /* Enhanced team showcase */
+    .team-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+      padding: 2rem;
+      background: var(--glass-bg);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .team-role {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 180, 255, 0.2);
+    }
+
+    .team-role:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 180, 255, 0.2);
+      border-color: var(--primary-blue);
+    }
+
+    .team-role h4 {
+      color: var(--primary-blue);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .team-role p {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Enhanced games grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .game-card {
+      background: var(--glass-bg);
+      border-radius: 25px;
+      padding: 0;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 180, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+      z-index: 1;
+    }
+
+    .game-card:hover::before {
+      left: 100%;
+    }
+
+    .game-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 180, 255, 0.3);
+      border-color: var(--primary-blue);
+    }
+
+    .game-image {
+      width: 100%;
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 25px 25px 0 0;
+      position: relative;
+      overflow: hidden;
+      background-color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--primary-blue);
+    }
+
+    .game-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 180, 255, 0.1), rgba(139, 92, 246, 0.1));
+      transition: opacity 0.3s ease;
+    }
+
+    .game-card:hover .game-image::after {
+      opacity: 0.5;
+    }
+
+    .game-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .game-title {
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .game-description {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .game-status {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(45deg, var(--purple), var(--pink));
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Enhanced services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .service-card {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(0, 180, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 180, 255, 0.05), rgba(139, 92, 246, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 180, 255, 0.2);
+      border-color: var(--primary-blue);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .service-card h4 {
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Enhanced contact section */
+    .contact-info {
+      background: var(--glass-bg);
+      border-radius: 25px;
+      padding: 3rem;
+      margin-top: 3rem;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 180, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .contact-info:hover {
+      border-color: var(--primary-blue);
+      box-shadow: 0 15px 35px rgba(0, 180, 255, 0.2);
+    }
+
+    .contact-info strong {
+      color: var(--primary-blue);
+      font-size: 1.3rem;
+    }
+
+    /* Enhanced footer */
     footer {
       text-align: center;
-      padding: 2rem;
-      border-top: 1px solid #1e1e1e;
-      font-size: 0.9rem;
-      color: #888;
+      padding: 4rem 2rem;
+      border-top: 1px solid rgba(0, 180, 255, 0.3);
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      position: relative;
+      z-index: 2;
     }
 
-    @media (max-width: 600px) {
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-blue);
+      background: rgba(0, 180, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 180, 255, 0.2);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      nav a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .section {
+        padding: 4rem 1rem;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-showcase {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .hero {
+        padding: 6rem 1rem 2rem;
+      }
+
       .hero h2 {
         font-size: 2rem;
       }
 
-      nav a {
-        margin-left: 1rem;
+      .section h3 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
+  <div class="particles" id="particles"></div>
 
   <header>
-    <h1>StudioCyber</h1>
+    <div class="logo-container">
+      <div class="logo">SC</div>
+      <h1>StudioCyber</h1>
+    </div>
     <nav>
       <a href="#about">About</a>
       <a href="#games">Games</a>
+      <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Creating the Future of Roblox on Xbox</h2>
-    <p>We are StudioCyber—a powerful team of developers, dreamers, and designers building immersive Roblox games with console-first focus and community at heart.</p>
+    <div class="hero-content">
+      <h2>Creating the Future of Roblox Gaming</h2>
+      <p>We are StudioCyber—a powerful team of developers, dreamers, and designers building immersive Roblox experiences with console-first focus and community at heart.</p>
+      <a href="#games" class="cta-button">Explore Our Games</a>
+    </div>
   </section>
 
   <section class="section" id="about">
-    <h3>About StudioCyber</h3>
-    <p>
-      Born from a passion for high-quality gameplay and storytelling, StudioCyber is a collective of talented Roblox creators aiming to dominate Xbox experiences. We believe in tight-knit collaboration and pushing the platform's limits.
-    </p>
+    <div class="section-content">
+      <h3>About StudioCyber</h3>
+      <p>
+        Born from a passion for high-quality gameplay and storytelling, StudioCyber is a collective of talented Roblox creators aiming to dominate Xbox experiences. We believe in tight-knit collaboration and pushing the platform's limits to create unforgettable gaming experiences.
+      </p>
+
+      <div class="team-showcase">
+        <div class="team-role">
+          <h4>🏗️ BUILDER</h4>
+          <p>Expert world construction and environmental design</p>
+        </div>
+        <div class="team-role">
+          <h4>⚡ SCRIPTER</h4>
+          <p>Advanced Lua programming and game mechanics</p>
+        </div>
+        <div class="team-role">
+          <h4>🎨 UI DESIGNER</h4>
+          <p>Intuitive interfaces and user experience</p>
+        </div>
+        <div class="team-role">
+          <h4>✨ GFX</h4>
+          <p>Stunning graphics and visual effects</p>
+        </div>
+        <div class="team-role">
+          <h4>🎬 VFX</h4>
+          <p>Cinematic effects and particle systems</p>
+        </div>
+      </div>
+
+      <p>
+        Our team combines technical expertise with creative vision to deliver games that stand out in the Roblox ecosystem. From concept to launch, we handle every aspect of game development with precision and passion.
+      </p>
+    </div>
   </section>
 
   <section class="section" id="games">
-    <h3>Games in Development</h3>
-    <p>
-      From intense PvP arenas to rich open-world universes, our games are crafted with love and built for community. Stay tuned for our first title dropping this year.
-    </p>
+    <div class="section-content">
+      <h3>Our Games</h3>
+      <p>
+        From intense experiences to rich gameplay mechanics, our games are crafted with love and built for community. Each project pushes the boundaries of what's possible on Roblox.
+      </p>
+      
+      <div class="games-grid">
+        <div class="game-card">
+          <div class="game-image">
+            🎮
+          </div>
+          <div class="game-content">
+            <h4 class="game-title">CyberStrike Arena</h4>
+            <p class="game-description">
+              A futuristic competitive shooter featuring advanced weapon systems, dynamic maps, and intense multiplayer battles optimized for Xbox controls.
+            </p>
+            <div class="game-status">Coming Soon</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-image">
+            🌟
+          </div>
+          <div class="game-content">
+            <h4 class="game-title">Neon Racers</h4>
+            <p class="game-description">
+              High-speed racing through cyberpunk cityscapes with customizable vehicles, power-ups, and stunning visual effects that showcase our VFX expertise.
+            </p>
+            <div class="game-status">In Development</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-image">
+            ⚔️
+          </div>
+          <div class="game-content">
+            <h4 class="game-title">Legends of Etheria</h4>
+            <p class="game-description">
+              An epic fantasy RPG with rich storytelling, complex character progression, and beautifully crafted worlds that immerse players in adventure.
+            </p>
+            <div class="game-status">Alpha Testing</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-image">
+            🚀
+          </div>
+          <div class="game-content">
+            <h4 class="game-title">Space Colony Simulator</h4>
+            <p class="game-description">
+              Build and manage your own space colony with advanced building mechanics, resource management, and stunning cosmic environments.
+            </p>
+            <div class="game-status">Planning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="section-content">
+      <h3>Our Services</h3>
+      <p>
+        We offer comprehensive game development services to bring your vision to life. From concept to launch, we handle every aspect of the development process.
+      </p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎮</div>
+          <h4>Game Development</h4>
+          <p>Full-stack game development from concept to launch, specializing in Roblox experiences with console optimization.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h4>Custom Scripting</h4>
+          <p>Advanced Lua scripting services for complex game mechanics, systems, and interactive features.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h4>UI/UX Design</h4>
+          <p>Modern, intuitive user interfaces designed for both PC and console players with accessibility in mind.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌟</div>
+          <h4>Visual Effects</h4>
+          <p>Stunning particle systems, lighting effects, and cinematic visuals that enhance gameplay immersion.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h4>World Building</h4>
+          <p>Detailed environment design and construction services for creating immersive game worlds.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h4>Game Optimization</h4>
+          <p>Performance optimization and testing to ensure smooth gameplay across all platforms and devices.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section" id="contact">
-    <h3>Join the Community</h3>
-    <p>
-      Want to collaborate, playtest, or just follow our journey? Contact us at <strong>studio.cyber.roblox@gmail.com</strong> and follow us on Roblox, YouTube, and Discord.
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 StudioCyber. All rights reserved.
-  </footer>
-
-</body>
-</html>
+    <div class="section-content">
+      <h3>Get in Touch</h3>
+      <p>
+        Ready to bring your game idea to life? We're here to help you create something extraordinary. Let's discuss your project and see how we can collaborate.
+      </p>
+      
+      <div class="contact-info">
+        <p><strong>Discord:</strong> StudioCyber#0001</p>
+        <p><strong>Email:</strong> hello@studiocyber.dev</p>
+        <p><strong>Twitter:</strong> @StudioCyberRBX</p>
+        <p><strong>Roblox Group:</strong> Studio
